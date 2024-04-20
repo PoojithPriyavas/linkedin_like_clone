@@ -1,17 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:linkedin_like_clone/Core/colors.dart';
 import 'package:linkedin_like_clone/Core/constants.dart';
 import 'package:linkedin_like_clone/model/post_model.dart';
+import 'package:linkedin_like_clone/presentation/screen_comment.dart';
 
-class ScreenHome extends StatefulWidget {
+class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
-
-  @override
-  State<ScreenHome> createState() => _ScreenHomeState();
-}
-
-class _ScreenHomeState extends State<ScreenHome> {
-  bool shouldPop = false;
 
   @override
   Widget build(BuildContext context) {
@@ -148,14 +143,14 @@ class _ScreenHomeState extends State<ScreenHome> {
                     Container(
                       height: 50,
                       color: whiteColor,
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Column(
+                              const Column(
                                 children: [
                                   Icon(
                                     Icons.thumb_up_alt_outlined,
@@ -167,19 +162,27 @@ class _ScreenHomeState extends State<ScreenHome> {
                                   )
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Icon(
-                                    Icons.comment,
-                                    size: 15,
-                                  ),
-                                  Text(
-                                    "Comment",
-                                    style: TextStyle(fontSize: 12),
-                                  )
-                                ],
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(CupertinoPageRoute(
+                                    builder: (context) =>
+                                        ScreenComment(post: dummyPosts[index]),
+                                  ));
+                                },
+                                child: const Column(
+                                  children: [
+                                    Icon(
+                                      Icons.comment,
+                                      size: 15,
+                                    ),
+                                    Text(
+                                      "Comment",
+                                      style: TextStyle(fontSize: 12),
+                                    )
+                                  ],
+                                ),
                               ),
-                              Column(
+                              const Column(
                                 children: [
                                   Icon(
                                     Icons.share,
@@ -191,7 +194,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                   )
                                 ],
                               ),
-                              Column(
+                              const Column(
                                 children: [
                                   Icon(
                                     Icons.send,
